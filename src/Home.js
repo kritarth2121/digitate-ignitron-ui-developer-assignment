@@ -83,7 +83,7 @@ return a.Stars-b.Stars;
        <button onClick={()=>sort232()}>Sort by rating</button>
        <h2> {filter.length} result found</h2> 
     <div className="cards">
-    {filter.map((item,index) => {return(
+    { filter.map((item,index) => {return(
         
         <Link key ={index} style={{ textDecoration: 'none', color: 'black'}}
         to={{
@@ -109,13 +109,15 @@ return a.Stars-b.Stars;
      ) })}</div></div>
    )
  }
- else if( result.length>0) {
+ else {
   return (
 
 
 
 
     <div className="App">
+
+     
   <input
         type="text"
         placeholder="Search"
@@ -125,7 +127,7 @@ return a.Stars-b.Stars;
  <button onClick={()=>sort22()}>Sort by rating</button>
  <h2> {filter.length} result found</h2> 
       <div className="cards">
-      {result.map((item,index) => {return(
+      { result.length>0?result.map((item,index) => {return(
           
           <Link key ={index} style={{ textDecoration: 'none', color: 'black'}}
           to={{
@@ -148,23 +150,15 @@ return a.Stars-b.Stars;
 </div>
         </Link>
         
-       ) })}</div>
+       ) }):    <ReactLoading type={"bars"} color={"grey"} />}</div>
+
 
     </div>
 
 
   );
 }
-else{
 
-    return(
-      <div>
-                    <ReactLoading type={"bars"} color={"grey"} />
-  
-  
-      </div>
-    )
-  }
 
 
 
