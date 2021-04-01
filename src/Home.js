@@ -1,6 +1,7 @@
 import React ,{useEffect,useState} from 'react';
 import './App.css';
 import { Link } from "react-router-dom";
+import ReactLoading from 'react-loading'
 
 import axios from "axios";
 function Home() {
@@ -68,14 +69,7 @@ return a.Stars-b.Stars;
   console.log(result);
 }
 
-if (result.length===0){
 
-  return(
-    <div>
-
-    </div>
-  )
-}
  if (filter.length>0){
    return(
      
@@ -89,11 +83,11 @@ if (result.length===0){
        <button onClick={()=>sort232()}>Sort by rating</button>
        <h2> {filter.length} result found</h2> 
     <div className="cards">
-    {filter.map((item,index=0) => {return(
+    {filter.map((item,index) => {return(
         
         <Link key ={index} style={{ textDecoration: 'none', color: 'black'}}
         to={{
-          pathname: `/${index.id}`,
+          pathname: `/${index}`,
           state: { img: img[index%6].Image,users: item }
         }}
       >
@@ -115,7 +109,7 @@ if (result.length===0){
      ) })}</div></div>
    )
  }
- else{
+ else if( result.length>0) {
   return (
 
 
@@ -131,11 +125,11 @@ if (result.length===0){
  <button onClick={()=>sort22()}>Sort by rating</button>
  <h2> {filter.length} result found</h2> 
       <div className="cards">
-      {result.map((item,index=0) => {return(
+      {result.map((item,index) => {return(
           
           <Link key ={index} style={{ textDecoration: 'none', color: 'black'}}
           to={{
-            pathname: `/${index.id}`,
+            pathname: `/${index}`,
             state: { img: img[index%6].Image,users: item }
           }}
         >
@@ -160,6 +154,21 @@ if (result.length===0){
 
 
   );
-}}
+}
+else{
+
+    return(
+      <div>
+                    <ReactLoading type={"bars"} color={"grey"} />
+  
+  
+      </div>
+    )
+  }
+
+
+
+
+}
 
 export default Home;
